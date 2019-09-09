@@ -266,7 +266,8 @@ class TelegramUserClient(TelegramClient):
         if src_type == 'user':
             update.message.reply_text(
                 'Lookup command: /help or /start\n' +
-                'Send me any photo with one face for prediction.\n')
+                'Send me any photo with one face for prediction.\n'
+                '給我任何相片，我會為你進行面容識別。\n')
         elif src_type == 'admin':
             update.message.reply_text(
                 'Lookup command: /help or /start\n' +
@@ -332,3 +333,7 @@ class TelegramUserClient(TelegramClient):
     def note_command_handler(self, update, context):
         ''' Note command '''
         TelegramClient.note_command_handler(self, update, context)
+
+    @permission_level('root_admin')
+    def retrain_command_handler(self, update, context):
+        TelegramClient.retrain_command_handler(update, context)
